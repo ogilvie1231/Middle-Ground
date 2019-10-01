@@ -1,3 +1,18 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyA5dFq5gi2VyDNjmIf3KeyI3wlBShsf9og",
+    authDomain: "middle-ground-e79b1.firebaseapp.com",
+    databaseURL: "https://middle-ground-e79b1.firebaseio.com",
+    projectId: "middle-ground-e79b1",
+    storageBucket: "",
+    messagingSenderId: "567702054744",
+    appId: "1:567702054744:web:6ae32e19d18f467c05272d",
+    measurementId: "G-W1WTFZN1BT"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+var database = firebase.database();
+
 $(document).on('click', '.button', function() {
     event.preventDefault();
 
@@ -17,6 +32,11 @@ $(document).on('click', '.button', function() {
         state: $('#sellerState').val().trim(),
     };
 
+
+    database.ref().push(buyer);
+
     console.log('buyer info: ', buyer);
     console.log('seller info: ', seller);
+
+
 });
