@@ -1,0 +1,66 @@
+ /* this is style for Map Picture*/
+ .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+/* this is style for row class*/  
+  .row  {
+      padding: 10px;
+      padding-bottom: 10px;
+  }
+
+/* this is style for Middle Ground picture right next to the address form*/  
+  .mgroundlogo5 {
+    display: block;
+    padding-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150%; 
+  }
+
+/* this is style for the sub-body part of the body*/
+.sub-body{
+    padding-bottom: 20px;
+    margin: 30px;
+}
+
+/* this is style for footer*/
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #eee;
+    color: black;
+    text-align: center;
+ }
+
+ /*login style*/
+ .signin {
+     padding-top: 10px;
+     max-width: 500px;
+     margin: auto;
+ }
+
+/*form style*/
+.formstyle {
+    background: lightblue;
+    padding: 35px;
+}
+
+/*profile card style*/
+.piccard {
+    padding: 20px;
+
+}
+
+.buyerform {
+  background: lightblue;
+  margin: 0px 0px 16px;
+  padding: 16px;
+}
+  
+  
