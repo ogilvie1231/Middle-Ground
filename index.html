@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
-
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -21,8 +21,7 @@
     <div class="top-bar" id="realEstateMenu">
         <div class="top-bar-left">
             <ul class="menu" data-responsive-menu="accordion">
-                <li class="menu-text"><img src="assets/images/mgroundlogo3.PNG" alt="Middle Ground Logo" width="185px;"
-                        height="80px;"></img>
+                <li class="menu-text"><img src="assets/images/mgroundlogo3.PNG" alt="Middle Ground Logo" width="185px;" height="80px;"></img>
                 </li>
 
         </div>
@@ -38,8 +37,7 @@
     <div class="row">
         <div class="medium-7 large-6 columns">
             <h1>Find a more convenient place to meet up with Middle Ground</h1>
-            <p class="subheader">With Middle Ground you don't have to worry about finding a convenient
-                place to meet, just enter your address and Middle Ground will do the rest.</p>
+            <p class="subheader">With Middle Ground you don't have to worry about finding a convenient place to meet, just enter your address and Middle Ground will do the rest.</p>
 
         </div>
         <div class="medium-5 large-3 columns">
@@ -49,17 +47,21 @@
                         <div class="small-12 columns">
                             <header Style="text-align: center;"><b>Buyer's Information</b></header>
                             <label>Please enter your address
-                                <input type="text" placeholder="Street">
+                                <input type="text" id="buyerAddress" placeholder="Street">
                             </label>
                             <label>City
-                                <input type="text" placeholder="City">
+                                <input type="text" id="buyerCity" placeholder="City">
                             </label>
                         </div>
                         <div class="small-12 columns">
-                            <label>Zip/State
-                                <input type="text" placeholder="Zip/State">
+
+                            <label>State
+                                <input type="text" id="buyerState" placeholder="State">
                             </label>
-                            <button type="submit" class="button">Search Middle Point!</button>
+                            <label>Zip
+                                <input type="text" id="buyerZip" placeholder="Zip">
+                            </label>
+                            <button type="submit" id="buyerSubmit" class="button">Search Middle Point!</button>
                         </div>
                     </div>
                 </form>
@@ -70,19 +72,23 @@
                 <form>
                     <div class="row">
                         <div class="small-12 columns">
-                            <header style="text-align: center"><b>Seller's Information</b></header>
+                            <header Style="text-align: center;"><b>Sellers Information</b></header>
                             <label>Please enter your address
-                                <input type="text" placeholder="Street">
+                                <input type="text" id="sellerAddress" placeholder="Street">
                             </label>
                             <label>City
-                                <input type="text" placeholder="City">
+                                <input type="text" id="sellerCity" placeholder="City">
                             </label>
                         </div>
                         <div class="small-12 columns">
-                            <label>Zip/State
-                                <input type="text" placeholder="Zip/State">
+
+                            <label>State
+                                <input type="text" id="sellerState" placeholder="State">
                             </label>
-                            <button type="submit" class="button">Search Middle Point!</button>
+                            <label>Zip
+                                <input type="text" id="sellerZip" placeholder="Zip">
+                            </label>
+                            <button type="submit" id="sellerSubmit" class="button">Search Middle Point!</button>
                         </div>
                     </div>
                 </form>
@@ -113,6 +119,7 @@
     <script>
         $(document).foundation();
     </script>
+    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>
