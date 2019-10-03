@@ -33,10 +33,18 @@ $(document).on('click', '.button', function() {
     };
 
 
-    database.ref().push(buyer);
+    database.ref().push(buyer, seller);
 
     console.log('buyer info: ', buyer);
     console.log('seller info: ', seller);
 
+
+});
+
+
+database.ref().on('child_added', function(childSnapshot) {
+    console.log('firebase callback full: ', childSnapshot.val());
+    console.log('firebase callback buyer: ', childSnapshot.val().seller);
+    console.log('firebase callback seller: ', childSnapshot.seller);
 
 });
