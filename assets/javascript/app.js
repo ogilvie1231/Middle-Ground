@@ -48,3 +48,28 @@ database.ref().on('child_added', function(childSnapshot) {
     console.log('firebase callback seller: ', childSnapshot.seller);
 
 });
+
+L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
+var queryURL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + L.mapquest.key + "&location=Logan,UT";
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+})
+.then(function (response) {
+  console.log(response)
+  console.log(response.results[0].locations[0].latLng.lat)
+  console.log(response.results[0].locations[0].latLng.lng)
+  //'map' refers to a <div> element with the ID map
+ var lat = response.results[0].locations[0].latLng.lat;
+ var lng = response.results[0].locations[0].latLng.lng 
+ L.mapquest.map('map', {
+   center: [lat, lng],
+   layers: L.mapquest.tileLayer('map'),
+   zoom: 12
+  
+ });
+//  L.mapquest.geocoding().geocode("166 N 520 E Orem UT 84097")
+//  L.mapquest.geocoding().geocode("938 Brandermill Cove Murray UT 84123")
+
+})
