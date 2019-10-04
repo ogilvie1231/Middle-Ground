@@ -42,14 +42,14 @@ $(document).on('click', '.button', function() {
 
 
 });
-console.log('Longshot: ', database);
+
 
 database.ref().on('child_added', function(childSnapshot) {
-    console.log('firebase callback full: ', childSnapshot.val());
-    console.log('firebase callback buyer: ', childSnapshot.val().buyer);
-    console.log('firebase callback seller: ', childSnapshot.val().seller);
+    // console.log('firebase callback full: ', childSnapshot.val());
+    // console.log('firebase callback buyer: ', childSnapshot.val().buyer);
+    // console.log('firebase callback seller: ', childSnapshot.val().seller);
 
-    console.log('firebase callback seller street: ', childSnapshot.val().seller.street);
+    // console.log('firebase callback seller street: ', childSnapshot.val().seller.street);
 });
 
 var buyer = {
@@ -69,8 +69,8 @@ var seller = {
 };
 
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
-var queryURL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + L.mapquest.key + "&location=" + seller.street + seller.city + seller.zip
-
+var queryURL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + L.mapquest.key + "&location=utah"
+    // http://www.mapquestapi.com/geocoding/v1/address?key=KEY&location=1600+Pennsylvania+Ave+NW,Washington,DC,20500
 
 $.ajax({
         url: queryURL,
