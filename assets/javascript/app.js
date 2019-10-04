@@ -32,7 +32,6 @@ $(document).on('click', '.button', function() {
         state: $('#sellerState').val().trim(),
     };
 
-
     database.ref().push(buyer, seller);
 
     console.log('buyer info: ', buyer);
