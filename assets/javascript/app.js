@@ -50,7 +50,7 @@ database.ref().on('child_added', function(childSnapshot) {
 });
 
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
-var queryURL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + L.mapquest.key + "&location=Logan,UT";
+var queryURL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + L.mapquest.key + "&location=Salt+Lake+City,UT";
 
 $.ajax({
   url: queryURL,
