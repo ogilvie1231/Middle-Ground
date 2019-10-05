@@ -49,15 +49,10 @@ $(".button").on('click', function() {
 
     // http://www.mapquestapi.com/geocoding/v1/address?key=KEY&location=1600+Pennsylvania+Ave+NW,Washington,DC,20500
 
-
-    //'map' refers to a <div> element with the ID map
-    // $(".button").on('click', function() {
-
-
-
 });
 
 function mapPlot() {
+    //'map' refers to a <div> element with the ID map
     L.mapquest.map('map', {
         center: [buyerLat, buyerLng],
         layers: L.mapquest.tileLayer('map'),
