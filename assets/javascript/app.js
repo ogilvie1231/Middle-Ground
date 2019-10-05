@@ -77,8 +77,10 @@ $.ajax({
         // Function to average our the LAT and LONG from both
         // Reverse Geocode to retrieve an address from the averaged LAT and LONG
         // Have that address display on map
+        var house = "938 Brandermill Cove Murray UT 84123"
+        L.mapquest.geocoding().geocode("1341 E Waters Lane Sandy UT, 84093")
+        L.mapquest.geocoding().geocode(house)
+        L.mapquest.geocoding().geocode("214 Layne Dr, Midvale, UT 84047")
 
-        // L.mapquest.geocoding().geocode("166 N 520 E Orem UT 84097")
-        //  L.mapquest.geocoding().geocode("938 Brandermill Cove Murray UT 84123")
 
     });
