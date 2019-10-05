@@ -6,6 +6,11 @@ var sellerStreet;
 var sellerCity;
 var sellerState;
 var sellerZip;
+var buyerLat;
+var buyerLng;
+var sellerLat;
+var sellerLng;
+
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
 $(".button").on('click', function() {
     event.preventDefault();
@@ -33,22 +38,34 @@ $(".button").on('click', function() {
             console.log(response)
             console.log(response.results[0].locations[0].latLng.lat)
             console.log(response.results[0].locations[0].latLng.lng)
-            var lat = response.results[0].locations[0].latLng.lat;
-            var lng = response.results[0].locations[0].latLng.lng;
+            buyerLat = response.results[0].locations[0].latLng.lat;
+            buyerLng = response.results[0].locations[0].latLng.lng;
+            mapPlot()
 
         });
+
+
+
+
+    // http://www.mapquestapi.com/geocoding/v1/address?key=KEY&location=1600+Pennsylvania+Ave+NW,Washington,DC,20500
+
+
+    //'map' refers to a <div> element with the ID map
+    // $(".button").on('click', function() {
+
+
+
 });
 
+function mapPlot() {
+    L.mapquest.map('map', {
+        center: [buyerLat, buyerLng],
+        layers: L.mapquest.tileLayer('map'),
+        zoom: 12
 
-// http://www.mapquestapi.com/geocoding/v1/address?key=KEY&location=1600+Pennsylvania+Ave+NW,Washington,DC,20500
-
-
-//'map' refers to a <div> element with the ID map
-L.mapquest.map('map', {
-    center: [0, 0],
-    layers: L.mapquest.tileLayer('map'),
-    zoom: 12
-});
+    });
+}
+// });
 // retrieve the LAT AND LONG from buyer and seller
 // Function to average our the LAT and LONG from both
 // Reverse Geocode to retrieve an address from the averaged LAT and LONG
