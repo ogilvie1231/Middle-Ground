@@ -1,86 +1,107 @@
-var firebaseConfig = {
-    apiKey: "AIzaSyA5dFq5gi2VyDNjmIf3KeyI3wlBShsf9og",
-    authDomain: "middle-ground-e79b1.firebaseapp.com",
-    databaseURL: "https://middle-ground-e79b1.firebaseio.com",
-    projectId: "middle-ground-e79b1",
-    storageBucket: "",
-    messagingSenderId: "567702054744",
-    appId: "1:567702054744:web:6ae32e19d18f467c05272d",
-    measurementId: "G-W1WTFZN1BT"
-};
+var buyerStreet;
+var buyerCity;
+var buyerState;
+var buyerZip;
+var sellerStreet;
+var sellerCity;
+var sellerState;
+var sellerZip;
+var buyerLat;
+var buyerLng;
+var sellerLat;
+var sellerLng;
 
-firebase.initializeApp(firebaseConfig);
-
-var database = firebase.database();
-
-$(document).on('click', '.button', function() {
-    event.preventDefault();
-
-    var buyer = {
-
-        street: $('#buyerAddress').val().trim(),
-        city: $('#buyerCity').val().trim(),
-        state: $('#buyerState').val().trim(),
-        zip: $('#buyerZip').val().trim(),
-    };
-
-    var seller = {
-
-        street: $('#sellerAddress').val().trim(),
-        city: $('#sellerCity').val().trim(),
-        state: $('#sellerState').val().trim(),
-        zip: $('#sellerZip').val().trim(),
-    };
-
-    database.ref().push({
-        buyer: buyer,
-        seller: buyer,
-    });
-
-    console.log('buyer info: ', buyer);
-    console.log('seller info: ', seller);
-
-
-});
-console.log('Longshot: ', this.seller);
-
-database.ref().on('child_added', function(childSnapshot) {
-    console.log('firebase callback full: ', childSnapshot.val());
-    console.log('firebase callback buyer: ', childSnapshot.val().seller);
-    console.log('firebase callback seller: ', childSnapshot.seller);
-
-    console.log('firebase callback seller street: ', childSnapshot.val().seller.street);
-});
 
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
-var queryURL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + L.mapquest.key + "&location=Salt+Lake+City,UT"
+$(".button").on('click', function() {
+    event.preventDefault();
 
 
-$.ajax({
-        url: queryURL,
-        method: "GET"
-    })
-    .then(function(response) {
-        console.log(response)
-        console.log(response.results[0].locations[0].latLng.lat)
-        console.log(response.results[0].locations[0].latLng.lng)
-            //'map' refers to a <div> element with the ID map
-        var lat = response.results[0].locations[0].latLng.lat;
-        var lng = response.results[0].locations[0].latLng.lng
-        L.mapquest.map('map', {
-            center: [lat, lng],
-            layers: L.mapquest.tileLayer('map'),
-            zoom: 12
+    buyerStreet = $('#buyerAddress').val().trim();
+    buyerCity = $('#buyerCity').val().trim();
+    buyerState = $('#buyerState').val().trim();
+    buyerZip = $('#buyerZip').val().trim();
+    sellerStreet = $('#sellerAddress').val().trim();
+    sellerCity = $('#sellerCity').val().trim();
+    sellerState = $('#sellerState').val().trim();
+    sellerZip = $('#sellerZip').val().trim();
+
+
+    var geocodeURL = "http://www.mapquestapi.com/geocoding/v1/batch?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
+        buyerState + "+" + buyerZip + "&location=" + sellerStreet + "+" + sellerCity + "+" + sellerState + "+" + sellerZip;
+
+    $.ajax({
+            url: geocodeURL,
+            method: "GET"
+        })
+        .then(function(response) {
+            console.log(response)
+
+            var buyerLat = response.results[0].locations[0].latLng.lat;
+            var buyerLng = response.results[0].locations[0].latLng.lng;
+            console.log(buyerLat);
+            console.log(buyerLng);
+            var sellerLat = response.results[1].locations[0].latLng.lat;
+            var sellerLng = response.results[1].locations[0].latLng.lng;
+            console.log(sellerLat);
+            console.log(sellerLng);
+            var midLat = (buyerLat + sellerLat) / 2;
+            var midLng = (buyerLng + sellerLng) / 2;
+            console.log(midLat);
+            console.log(midLng);
+
+            var reverseURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=" + L.mapquest.key + "&location=" + midLat + "," + midLng;
+
+            $.ajax({
+                    url: reverseURL,
+                    method: "GET"
+                })
+                .then(function(response) {
+                    console.log(response)
+                    console.log(response.results[0].locations[0].street)
+                    var midPoint = response.results[0].locations[0].street
+
+
+                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2 &maxMatches=5"
+                    $.ajax({
+                            url: searchURL,
+                            method: "GET"
+                        })
+                        .then(function(response) {
+                            console.log(response)
+                            results = response.searchResults;
+                            for (var i = 0; i < results.length; i++) {
+                                var plotPoints = response.searchResults[i].fields.address
+                                L.mapquest.geocoding().geocode(plotPoints);
+                            }
+                            mapPlot()
+                            L.mapquest.geocoding().geocode(midPoint)
+                        })
+
+                })
+
+
         });
 
-        // retrieve the LAT AND LONG from buyer and seller
-        // Function to average our the LAT and LONG from both
-        // Reverse Geocode to retrieve an address from the averaged LAT and LONG
-        // Have that address display on map
-        var house = "938 Brandermill Cove Murray UT 84123"
-        L.mapquest.geocoding().geocode("1341 E Waters Lane Sandy UT, 84093")
-        L.mapquest.geocoding().geocode(house)
-        L.mapquest.geocoding().geocode("214 Layne Dr, Midvale, UT 84047")
 
+
+
+
+
+});
+
+function mapPlot() {
+    //'map' refers to a <div> element with the ID map
+    L.mapquest.map('map', {
+        center: [0, 0],
+        layers: L.mapquest.tileLayer('map'),
+        zoom: 12
 
     });
+}
+
+
+// retrieve the LAT AND LONG from buyer and seller
+// Function to average our the LAT and LONG from both
+// Reverse Geocode to retrieve an address from the averaged LAT and LONG
+// Have that address display on map

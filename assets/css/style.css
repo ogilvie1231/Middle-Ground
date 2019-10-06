@@ -30,7 +30,7 @@
  /* this is style for footer*/
  
  .footer {
-     position: fixed;
+     position: static;
      left: 0;
      bottom: 0;
      width: 100%;
@@ -62,10 +62,25 @@
      margin: 0px 0px 16px;
      padding: 16px;
  }
+ /*header*/
  
  h1 {
      font-size: 24px;
      text-align: center;
      font-weight: bolder;
-     margin-top: 100px;
+     margin-top: 16;
+ }
+ 
+ .navigation {
+     background-color: #383377;
+ }
+ /* #mapDiv {
+     border: solid 1px black;
+     padding: 2%;
+     background-color: lightblue;
+ } */
+ 
+ .button {
+     position: relative;
+     left: 18%;
  }
