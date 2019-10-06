@@ -11,8 +11,9 @@ var buyerLng;
 var sellerLat;
 var sellerLng;
 
+
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
-$(".button").on('click', function() {
+$(".button").on('click', function () {
     event.preventDefault();
 
 
@@ -25,60 +26,82 @@ $(".button").on('click', function() {
     sellerState = $('#sellerState').val().trim();
     sellerZip = $('#sellerZip').val().trim();
 
-    console.log('button has been pressed - buyer state: ', buyerState)
 
-    var geocodeURL = "http://www.mapquestapi.com/geocoding/v1/address?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
-        buyerState + "+" + buyerZip;
+    var geocodeURL = "http://www.mapquestapi.com/geocoding/v1/batch?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
+        buyerState + "+" + buyerZip + "&location=" + sellerStreet + "+" + sellerCity + "+" + sellerState + "+" + sellerZip;
 
     $.ajax({
-            url: geocodeURL,
-            method: "GET"
-        })
-        .then(function(response) {
+        url: geocodeURL,
+        method: "GET"
+    })
+        .then(function (response) {
             console.log(response)
-            console.log(response.results[0].locations[0].latLng.lat)
-            console.log(response.results[0].locations[0].latLng.lng)
-            buyerLat = response.results[0].locations[0].latLng.lat;
-            buyerLng = response.results[0].locations[0].latLng.lng;
-            mapPlot()
+
+            var buyerLat = response.results[0].locations[0].latLng.lat;
+            var buyerLng = response.results[0].locations[0].latLng.lng;
+            console.log(buyerLat);
+            console.log(buyerLng);
+            var sellerLat = response.results[1].locations[0].latLng.lat;
+            var sellerLng = response.results[1].locations[0].latLng.lng;
+            console.log(sellerLat);
+            console.log(sellerLng);
+            var midLat = (buyerLat + sellerLat) / 2;
+            var midLng = (buyerLng + sellerLng) / 2;
+            console.log(midLat);
+            console.log(midLng);
+
+            var reverseURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=" + L.mapquest.key + "&location=" + midLat + "," + midLng;
+
+            $.ajax({
+                url: reverseURL,
+                method: "GET"
+            })
+                .then(function (response) {
+                    console.log(response)
+                    console.log(response.results[0].locations[0].street)
+                    var midPoint = response.results[0].locations[0].street
+
+
+                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2 &maxMatches=5"
+                    $.ajax({
+                        url: searchURL,
+                        method: "GET"
+                    })
+                        .then(function (response) {
+                            console.log(response)
+                            results = response.searchResults;
+                            for ( var i = 0; i < results.length; i++) {
+                                var plotPoints = response.searchResults[i].fields.address
+                                L.mapquest.geocoding().geocode(plotPoints);
+                            }
+                            mapPlot()
+                            L.mapquest.geocoding().geocode(midPoint)
+                        })
+
+                })
+
 
         });
 
 
 
 
-    // http://www.mapquestapi.com/geocoding/v1/address?key=KEY&location=1600+Pennsylvania+Ave+NW,Washington,DC,20500
+
 
 });
 
 function mapPlot() {
     //'map' refers to a <div> element with the ID map
     L.mapquest.map('map', {
-        center: [buyerLat, buyerLng],
+        center: [0,0],
         layers: L.mapquest.tileLayer('map'),
         zoom: 12
 
     });
 }
-// });
+
+
 // retrieve the LAT AND LONG from buyer and seller
 // Function to average our the LAT and LONG from both
 // Reverse Geocode to retrieve an address from the averaged LAT and LONG
 // Have that address display on map
-
-// L.mapquest.geocoding().geocode("166 N 520 E Orem UT 84097")
-//  L.mapquest.geocoding().geocode("938 Brandermill Cove Murray UT 84123")
-
-
-// var midLat = (buyerLat + SellerLat / 2);
-// var midLng = (buyerLng + SellerLng / 2);
-// console.log(midLat);
-// console.log(midLng);
-// var reverseURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=" + l.mapquest.key + "&location=" + midLat + "," + midLng;
-// $.ajax({
-//         url: reverseURL,
-//         method: "GET"
-//     })
-//     .then(function(response) {
-//         console.log(response)
-//     })
