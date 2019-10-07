@@ -72,6 +72,9 @@ $(".button").on('click', function() {
                             for (var i = 0; i < results.length; i++) {
                                 var plotPoints = response.searchResults[i].fields.address
                                 L.mapquest.geocoding().geocode(plotPoints);
+                                // $(plotPoints).on('click', function() {
+
+                                // }
 
                             }
                             console.log('plot point: ', plotPoints[i]);
