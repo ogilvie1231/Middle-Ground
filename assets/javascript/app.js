@@ -1,3 +1,4 @@
+// creating global variables
 var buyerStreet;
 var buyerCity;
 var buyerState;
@@ -11,12 +12,12 @@ var buyerLng;
 var sellerLat;
 var sellerLng;
 
-
+// 
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
 $(".button").on('click', function() {
     event.preventDefault();
 
-
+    // retreiving and setting input values
     buyerStreet = $('#buyerAddress').val().trim();
     buyerCity = $('#buyerCity').val().trim();
     buyerState = $('#buyerState').val().trim();
@@ -25,7 +26,6 @@ $(".button").on('click', function() {
     sellerCity = $('#sellerCity').val().trim();
     sellerState = $('#sellerState').val().trim();
     sellerZip = $('#sellerZip').val().trim();
-
 
     var geocodeURL = "http://www.mapquestapi.com/geocoding/v1/batch?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
         buyerState + "+" + buyerZip + "&location=" + sellerStreet + "+" + sellerCity + "+" + sellerState + "+" + sellerZip;
@@ -62,23 +62,35 @@ $(".button").on('click', function() {
                     var midPoint = response.results[0].locations[0].street
 
 
-                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=5 &maxMatches=5"
+                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2 &maxMatches=5&hostedData=mqap.ntpois|group_sic_code=?|541103"
+
+
+
+
                     $.ajax({
                             url: searchURL,
                             method: "GET"
                         })
                         .then(function(response) {
-                            console.log(response)
+                            console.log('midpoint: ', response)
                             results = response.searchResults;
                             for (var i = 0; i < results.length; i++) {
                                 var plotPoints = response.searchResults[i].fields.address;
                                 L.mapquest.geocoding().geocode(plotPoints);
+                                // $(plotPoints).on('click', function() {
+
+                                // }
+
                             }
+                            console.log('plot point: ', plotPoints[i]);
+                            // for (var i = 0; i < plotPoints.length; i++) {
+
+                            // }
+
                             mapPlot()
                             L.mapquest.geocoding().geocode(midPoint)
-                        })
-
-                })
+                        });
+                });
 
 
         });
