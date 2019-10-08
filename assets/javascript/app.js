@@ -67,7 +67,7 @@ $(".button").on('click', function() {
                             method: "GET"
                         })
                         .then(function(response) {
-                            console.log(response)
+                            console.log('midpoint: ', response)
                             results = response.searchResults;
                             for (var i = 0; i < results.length; i++) {
                                 var plotPoints = response.searchResults[i].fields.address
