@@ -61,7 +61,12 @@ $(".button").on('click', function() {
                     console.log(response.results[0].locations[0].street)
                     var midPoint = response.results[0].locations[0].street
 
+
                     var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2 &maxMatches=5&hostedData=mqap.ntpois|group_sic_code=?|541103"
+
+
+
+
                     $.ajax({
                             url: searchURL,
                             method: "GET"
@@ -70,7 +75,7 @@ $(".button").on('click', function() {
                             console.log('midpoint: ', response)
                             results = response.searchResults;
                             for (var i = 0; i < results.length; i++) {
-                                var plotPoints = response.searchResults[i].fields.address
+                                var plotPoints = response.searchResults[i].fields.address;
                                 L.mapquest.geocoding().geocode(plotPoints);
                                 // $(plotPoints).on('click', function() {
 
