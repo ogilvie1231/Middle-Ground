@@ -107,3 +107,13 @@ h1 {
     margin: auto;
     text-align: center;
 }
+
+#begin {
+    text-align: center;
+    margin-top: 10%;
+    margin-right: 20%;
+}
+
+.subheader {
+    text-align: center;
+}

@@ -12,11 +12,18 @@ var buyerLng;
 var sellerLat;
 var sellerLng;
 
-// 
+// $(document).on('load', function(LeadText) {
+//     $('.lead').append('Fill in the addresses to find your Middle Ground');
+// });
+
+// LeadText();
+
+
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
 $(".button").on('click', function() {
     event.preventDefault();
 
+    $('#begin').hide();
     // retreiving and setting input values
     buyerStreet = $('#buyerAddress').val().trim();
     buyerCity = $('#buyerCity').val().trim();
@@ -90,8 +97,9 @@ $(".button").on('click', function() {
 
                             // }
 
-                            mapPlot()
-                            L.mapquest.geocoding().geocode(midPoint)
+                            mapPlot();
+                            L.mapquest.geocoding().geocode(midPoint);
+                            $('#locationIs').append('Your Middle Ground Location is:');
                         });
                 });
 
