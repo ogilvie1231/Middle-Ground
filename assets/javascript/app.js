@@ -27,7 +27,9 @@ $(".button").on('click', function() {
     sellerState = $('#sellerState').val().trim();
     sellerZip = $('#sellerZip').val().trim();
 
-    var geocodeURL = "http://www.mapquestapi.com/geocoding/v1/batch?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
+
+    var geocodeURL = "https://www.mapquestapi.com/geocoding/v1/batch?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
+
         buyerState + "+" + buyerZip + "&location=" + sellerStreet + "+" + sellerCity + "+" + sellerState + "+" + sellerZip;
 
     $.ajax({
@@ -50,7 +52,7 @@ $(".button").on('click', function() {
             console.log(midLat);
             console.log(midLng);
 
-            var reverseURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=" + L.mapquest.key + "&location=" + midLat + "," + midLng;
+            var reverseURL = "https://www.mapquestapi.com/geocoding/v1/reverse?key=" + L.mapquest.key + "&location=" + midLat + "," + midLng;
 
             $.ajax({
                     url: reverseURL,
@@ -62,8 +64,9 @@ $(".button").on('click', function() {
                     var midPoint = response.results[0].locations[0].street
 
 
-                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2 &maxMatches=5&hostedData=mqap.ntpois|group_sic_code=?|541103"
 
+
+                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2 &maxMatches=5&hostedData=mqap.ntpois|group_sic_code=?|541103"
 
 
 
