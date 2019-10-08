@@ -6,7 +6,11 @@
     margin-right: auto;
     width: 50%;
 }
+/*nav bar style*/
 
+.test-nav {
+    background-color: blue;
+}
 
 /* this is style for row class*/
 
@@ -41,13 +45,14 @@
 /* this is style for footer*/
 
 .footer {
-    position: static;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
     background-color: #eee;
     color: black;
     text-align: center;
+    height: 50px;
 }
 
 
@@ -96,7 +101,7 @@ h1 {
 }
 
 .navigation {
-    background-color: #383377;
+    background-color: blue;
 }
 
 #mapDiv {
