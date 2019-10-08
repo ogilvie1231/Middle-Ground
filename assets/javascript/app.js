@@ -1,3 +1,4 @@
+// creating global variables
 var buyerStreet;
 var buyerCity;
 var buyerState;
@@ -11,12 +12,12 @@ var buyerLng;
 var sellerLat;
 var sellerLng;
 
-
+// 
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
-$(".button").on('click', function () {
+$(".button").on('click', function() {
     event.preventDefault();
 
-
+    // retreiving and setting input values
     buyerStreet = $('#buyerAddress').val().trim();
     buyerCity = $('#buyerCity').val().trim();
     buyerState = $('#buyerState').val().trim();
@@ -26,15 +27,14 @@ $(".button").on('click', function () {
     sellerState = $('#sellerState').val().trim();
     sellerZip = $('#sellerZip').val().trim();
 
-
     var geocodeURL = "http://www.mapquestapi.com/geocoding/v1/batch?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
         buyerState + "+" + buyerZip + "&location=" + sellerStreet + "+" + sellerCity + "+" + sellerState + "+" + sellerZip;
 
     $.ajax({
-        url: geocodeURL,
-        method: "GET"
-    })
-        .then(function (response) {
+            url: geocodeURL,
+            method: "GET"
+        })
+        .then(function(response) {
             console.log(response)
 
             var buyerLat = response.results[0].locations[0].latLng.lat;
@@ -53,32 +53,44 @@ $(".button").on('click', function () {
             var reverseURL = "http://www.mapquestapi.com/geocoding/v1/reverse?key=" + L.mapquest.key + "&location=" + midLat + "," + midLng;
 
             $.ajax({
-                url: reverseURL,
-                method: "GET"
-            })
-                .then(function (response) {
+                    url: reverseURL,
+                    method: "GET"
+                })
+                .then(function(response) {
                     console.log(response)
                     console.log(response.results[0].locations[0].street)
                     var midPoint = response.results[0].locations[0].street
 
 
-                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=15 &maxMatches=15"
+                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2 &maxMatches=5&hostedData=mqap.ntpois|group_sic_code=?|541103"
+
+
+
+
                     $.ajax({
-                        url: searchURL,
-                        method: "GET"
-                    })
-                        .then(function (response) {
-                            console.log(response)
+                            url: searchURL,
+                            method: "GET"
+                        })
+                        .then(function(response) {
+                            console.log('midpoint: ', response)
                             results = response.searchResults;
-                            for ( var i = 0; i < results.length; i++) {
+                            for (var i = 0; i < results.length; i++) {
                                 var plotPoints = response.searchResults[i].fields.address;
                                 L.mapquest.geocoding().geocode(plotPoints);
+                                // $(plotPoints).on('click', function() {
+
+                                // }
+
                             }
+                            console.log('plot point: ', plotPoints[i]);
+                            // for (var i = 0; i < plotPoints.length; i++) {
+
+                            // }
+
                             mapPlot()
                             L.mapquest.geocoding().geocode(midPoint)
-                        })
-
-                })
+                        });
+                });
 
 
         });
@@ -93,7 +105,7 @@ $(".button").on('click', function () {
 function mapPlot() {
     //'map' refers to a <div> element with the ID map
     L.mapquest.map('map', {
-        center: [0,0],
+        center: [0, 0],
         layers: L.mapquest.tileLayer('map'),
         zoom: 12
 
