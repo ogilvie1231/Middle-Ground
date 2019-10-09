@@ -1,119 +1,87 @@
-/* this is style for Map Picture*/
+/* Style for navigation*/
 
-.center {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+.nav-link {
+    float: right;
 }
 
 
-/* this is style for row class*/
+/* Style for both forms*/
 
-.row {
+.bothforms {
+    background-color: yellow;
+    margin: 25px;
     padding: 10px;
-    padding-bottom: 10px;
+}
+
+.forms {
+    background: lightblue;
+    margin: auto;
+    width: 100%;
+    border: 3px solid lightgreen;
+    padding: 10px;
+}
+
+.form1 {
+    padding-left: 50px;
+}
+
+.form2 {
+    padding-left: 50px;
 }
 
 
-/* this is style for Middle Ground picture right next to the address form*/
+/* Style for map image*/
 
-.mgroundlogo5 {
-    display: block;
-    padding-top: 80px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 150%;
+.img {
+    margin: 10px;
 }
 
 
-/* this is style for the sub-body part of the body*/
-
-.sub-body {
-    padding-bottom: 20px;
-    margin: 30px;
-}
-
-
-/* this is style for footer*/
+/* Style for footer*/
 
 .footer {
-    position: static;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #eee;
-    color: black;
+    background-color: #007bff!important;
+    color: white;
     text-align: center;
+    padding-top: 1px;
 }
 
-
-/*login style*/
-
-.signin {
-    padding-top: 10px;
-    max-width: 500px;
-    margin: auto;
+.footernote {
+    padding-bottom: 0px;
 }
 
-
-/*form style*/
-
-.formstyle {
-    background: lightblue;
-    padding: 35px;
-}
-
-
-/*profile card style*/
-
-.piccard {
-    padding: 20px;
-}
-
-label {
+h2 {
     text-align: center;
-}
-
-.buyerSeller {
-    font-size: 20px;
-    text-align: center;
-    font-weight: bolder;
-    padding-bottom: 4%;
-}
-
-
-/*header*/
-
-h1 {
-    font-size: 24px;
-    text-align: center;
-    font-weight: bolder;
-    margin-top: 16;
-}
-
-.navigation {
-    background-color: #383377;
-}
-
-#mapDiv {
-    border: solid 1px black;
-    padding: 2%;
-    background-color: lightblue;
-}
-
-.button {
-    display: block;
-    margin: auto;
-    text-align: center;
-}
-
-#begin {
-    text-align: center;
-    margin-top: 10%;
-    margin-right: 20%;
 }
 
 .subheader {
     text-align: center;
 }
+
+#begin {
+    text-align: center;
+}
+
+#map {
+    margin-bottom: 14%;
+    z-index: 0;
+}
+
+#Submit {
+    margin-top: 2%;
+}
+
+#locationIs {
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+/* #map {
+    margin: auto;
+} */

@@ -20,10 +20,11 @@ var sellerLng;
 
 
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
-$(".button").on('click', function() {
+$(document).on('click', 'button', function() {
     event.preventDefault();
 
     $('#begin').hide();
+    // $('.forms').hide();
     // retreiving and setting input values
     buyerStreet = $('#buyerAddress').val().trim();
     buyerCity = $('#buyerCity').val().trim();
@@ -34,6 +35,14 @@ $(".button").on('click', function() {
     sellerState = $('#sellerState').val().trim();
     sellerZip = $('#sellerZip').val().trim();
 
+    $('#buyerAddress').val('');
+    $('#buyerCity').val('');
+    $('#buyerState').val('');
+    $('#buyerZip').val('');
+    $('#sellerAddress').val('');
+    $('#sellerCity').val('');
+    $('#sellerState').val('');
+    $('#sellerZip').val('');
 
     var geocodeURL = "https://www.mapquestapi.com/geocoding/v1/batch?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
 
