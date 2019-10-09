@@ -1,7 +1,5 @@
 /* Style for navigation*/
 
-.navigation {}
-
 .nav-link {
     float: right;
 }
@@ -55,3 +53,35 @@
 .footernote {
     padding-bottom: 0px;
 }
+
+h2 {
+    text-align: center;
+}
+
+.subheader {
+    text-align: center;
+}
+
+#begin {
+    text-align: center;
+}
+
+#map {
+    margin-bottom: 14%;
+    z-index: 0;
+}
+
+#Submit {
+    margin-top: 2%;
+}
+
+#locationIs {
+    font-size: 24px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+
+/* #map {
+    margin: auto;
+} */
