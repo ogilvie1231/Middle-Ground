@@ -22,11 +22,11 @@
 }
 
 .form1 {
-    padding-left: 50px;
+    text-align: center;
 }
 
 .form2 {
-    padding-left: 50px;
+    text-align: center;
 }
 
 
@@ -85,3 +85,7 @@ h2 {
 /* #map {
     margin: auto;
 } */
+
+.buyerSeller {
+    margin-bottom: 2%;
+}
