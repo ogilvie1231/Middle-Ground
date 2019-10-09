@@ -82,7 +82,7 @@ $(document).on('click', 'button', function() {
 
 
 
-                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2 &maxMatches=5&hostedData=mqap.ntpois|group_sic_code=?|541103"
+                    var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2&maxMatches=5&hostedData=mqap.ntpois|group_sic_code=?|541103"
 
 
 
@@ -101,14 +101,14 @@ $(document).on('click', 'button', function() {
                                 // }
 
                             }
-                            console.log('plot point: ', plotPoints[i]);
+                            console.log('plot point: ', plotPoints);
                             // for (var i = 0; i < plotPoints.length; i++) {
 
                             // }
 
                             mapPlot();
                             L.mapquest.geocoding().geocode(midPoint);
-                            $('#locationIs').append('Your Middle Ground Location is:');
+                            $('#locationIs').append('Here are some safe and convenient places to meet!');
                         });
                 });
 
