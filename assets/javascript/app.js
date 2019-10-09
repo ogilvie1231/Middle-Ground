@@ -12,19 +12,17 @@ var buyerLng;
 var sellerLat;
 var sellerLng;
 
-// $(document).on('load', function(LeadText) {
-//     $('.lead').append('Fill in the addresses to find your Middle Ground');
-// });
-
-// LeadText();
-
-
+// setting mapquest key
 L.mapquest.key = 'bR4IBmd5H6D8jaSYF4gzO12qVloc0MFi';
+
+// creating a click even to submit values
 $(document).on('click', 'button', function() {
     event.preventDefault();
 
     $('#begin').hide();
+    // hide function to hide form after submission. Removed so addresses can be continued to put in.
     // $('.forms').hide();
+
     // retreiving and setting input values
     buyerStreet = $('#buyerAddress').val().trim();
     buyerCity = $('#buyerCity').val().trim();
@@ -35,6 +33,7 @@ $(document).on('click', 'button', function() {
     sellerState = $('#sellerState').val().trim();
     sellerZip = $('#sellerZip').val().trim();
 
+    // clearing values after submission
     $('#buyerAddress').val('');
     $('#buyerCity').val('');
     $('#buyerState').val('');
@@ -44,10 +43,12 @@ $(document).on('click', 'button', function() {
     $('#sellerState').val('');
     $('#sellerZip').val('');
 
+    // creating search URL
     var geocodeURL = "https://www.mapquestapi.com/geocoding/v1/batch?key=" + L.mapquest.key + "&location=" + buyerStreet + "+" + buyerCity + "+" +
 
         buyerState + "+" + buyerZip + "&location=" + sellerStreet + "+" + sellerCity + "+" + sellerState + "+" + sellerZip;
 
+    // initializing geocoding AJAX call
     $.ajax({
             url: geocodeURL,
             method: "GET"
@@ -70,6 +71,7 @@ $(document).on('click', 'button', function() {
 
             var reverseURL = "https://www.mapquestapi.com/geocoding/v1/reverse?key=" + L.mapquest.key + "&location=" + midLat + "," + midLng;
 
+            // initinalizing reverse geocode AJAX call
             $.ajax({
                     url: reverseURL,
                     method: "GET"
@@ -79,13 +81,9 @@ $(document).on('click', 'button', function() {
                     console.log(response.results[0].locations[0].street)
                     var midPoint = response.results[0].locations[0].street
 
-
-
-
                     var searchURL = "https://www.mapquestapi.com/search/v2/radius?key=" + L.mapquest.key + "&origin=" + midPoint + "&radius=2&maxMatches=5&hostedData=mqap.ntpois|group_sic_code=?|541103"
 
-
-
+                    // initializing AJAX call to display addresses in the middle of the two locations
                     $.ajax({
                             url: searchURL,
                             method: "GET"
@@ -96,44 +94,28 @@ $(document).on('click', 'button', function() {
                             for (var i = 0; i < results.length; i++) {
                                 var plotPoints = response.searchResults[i].fields.address;
                                 L.mapquest.geocoding().geocode(plotPoints);
+                                // Working on a click event that will give driving directions
                                 // $(plotPoints).on('click', function() {
 
                                 // }
-
-                            }
+                            };
                             console.log('plot point: ', plotPoints);
-                            // for (var i = 0; i < plotPoints.length; i++) {
 
-                            // }
-
+                            // calling mapPlot function and using map quests's js library to initilize the map
                             mapPlot();
                             L.mapquest.geocoding().geocode(midPoint);
                             $('#locationIs').append('Here are some safe and convenient places to meet!');
                         });
                 });
-
-
         });
-
-
-
-
-
-
 });
 
 function mapPlot() {
-    //'map' refers to a <div> element with the ID map
+    //Appending the map to the DOM.
     L.mapquest.map('map', {
         center: [0, 0],
         layers: L.mapquest.tileLayer('map'),
         zoom: 12
 
     });
-}
-
-
-// retrieve the LAT AND LONG from buyer and seller
-// Function to average our the LAT and LONG from both
-// Reverse Geocode to retrieve an address from the averaged LAT and LONG
-// Have that address display on map
+};
