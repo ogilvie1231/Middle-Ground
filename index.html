@@ -1,134 +1,126 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MiddleGround</title>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>GRID</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
     <script src="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.js"></script>
     <link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/mapquest-js/v1.3.2/mapquest.css" />
-    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
-    <link rel="stylesheet" href="assets/css/reset.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='assets/css/style.css'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-database.js"></script>
+
+
 </head>
 
 <body>
 
-    <div class="title-bar" data-responsive-toggle="realEstateMenu" data-hide-for="small">
-        <button class="menu-icon" type="button" data-toggle onclick="window.location.href =login.html"></button>
-        <div class="title-bar-title">Menu</div>
-    </div>
-    <div class="top-bar" id="realEstateMenu">
-        <div class="top-bar-left">
-            <ul class="menu" data-responsive-menu="accordion">
-                <li class="menu-text"><img src="assets/images/mgroundlogo3.PNG" alt="Middle Ground Logo" width="185px;" height="80px;"></img>
+    <!--Navigation-->
+
+    <div class="navigation">
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo.PNG" width="150" height="30" class="d-inline-block align-top" alt="">
+            </a>
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="team.html" style="color: white;">Our Team</a>
                 </li>
-        </div>
-        <div class="top-bar-right">
-            <ul class="menu">
-                <li><a href="assets/team.html" target="_blank">Our Team</a></li>
-                <li><a href="myaccount.html">My Account</a></li>
-                <li><a class="button" href="login.html" role="button">Login</a></li>
             </ul>
+        </nav>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Find a more convenient place to meet up with Middle Ground</h2>
+                <p class="subheader">With Middle Ground you don't have to worry about finding a convenient place to meet, just enter your address and Middle Ground will do the rest.</p>
+            </div>
         </div>
     </div>
 
     <br>
-    <div></div>
-    <h1>Find a more convenient place to meet up with Middle Ground</h1>
-    <p class="subheader">With Middle Ground you don't have to worry about finding a convenient place to meet, just enter your address and Middle Ground will do the rest.</p>
-    </div>
-    <div class="row">
-        <div class="medium-7 large-6 columns">
-            <div id="begin">
-                <h1>Fill in the addresses to find your Middle Ground</h1>
-            </div>
-            <!--sub-body | Map-->
-            <div class="sub-body">
-                <div class="row column">
-                    <p class="lead" id="locationIs"></p>
-                </div>
+
+    <!--Space for the map-->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
                 <div class="imagemap">
                     <div id="map" style="width: 100%; height: 530px;"></div>
                 </div>
             </div>
 
+            <!--This is the buyer/seller form-->
 
-            <h1>Find a more convenient place to meet up with Middle Ground</h1>
-            <p class="subheader">With Middle Ground you don't have to worry about finding a convenient place to meet, just enter your address and Middle Ground will do the rest.</p>
+
+            <div class="col-sm-6">
+                <div class="forms">
+                    <div class="form1">
+                        <form>
+                            <header class="buyerSeller" style="color: black; text-align: center;"><b>Buyer's
+                                    Information</b></header>
+
+                            <label>Please enter your address
+                                <input class="form-control" type="text" id="buyerAddress" placeholder="Street">
+                            </label>
+                            <label>City
+                                <input class="form-control" type="text" id="buyerCity" placeholder="City">
+                            </label>
+                            <label>State
+                                <input class="form-control" type="text" id="buyerState" placeholder="State">
+                            </label>
+                            <label>Zip
+                                <input class="form-control" type="text" id="buyerZip" placeholder="Zip">
+                            </label>
+                        </form>
+                    </div>
+                    <br>
+                    <div class="form2">
+                        <form>
+                            <header class="buyerSeller" style="color: black; text-align: center;"><b>Buyer's
+                                    Information</b></header>
+                            <label>Please enter your address
+                                <input class="form-control" type="text" id="sellerAddress" placeholder="Address">
+                            </label>
+                            <label>City
+                                <input class="form-control" type="text" id="sellerCity" placeholder="City">
+                            </label>
+                            <label>State
+                                <input class="form-control" type="text" id="sellerState" placeholder="State">
+                            </label>
+                            <label>Zip
+                                <input class="form-control" type="text" id="sellerZip" placeholder="Zip">
+                            </label>
+
+                        </form>
+                    </div>
+                    <button type="submit" id="Submit" class="btn btn-success btn-lg btn-block">Search Middle
+                        Point!</button>
+                </div>
+            </div>
 
         </div>
 
-        <div id="mapDiv" class="medium-7 large-6 columns">
-            <div class="medium-12 large-6 columns">
-
-                <div class="callout secondary">
-                    <form>
-                        <div class="row">
-                            <div class="small-12 columns">
-                                <header class="buyerSeller"><b>Buyer's Information</b></header>
-                                <label>Please enter your address
-                                    <input type="text" id="buyerAddress" placeholder="Street">
-                                </label>
-                                <label>City
-                                    <input type="text" id="buyerCity" placeholder="City">
-                                </label>
-                            </div>
-                            <div class="small-12 columns">
-
-                                <label>State
-                                    <input type="text" id="buyerState" placeholder="State">
-                                </label>
-                                <label>Zip
-                                    <input type="text" id="buyerZip" placeholder="Zip">
-                                </label>
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="medium-12 large-6 columns">
-                <div class="callout secondary">
-                    <form>
-                        <div class="row">
-                            <div class="small-12 columns">
-                                <header class="buyerSeller"><b>Sellers Information</b></header>
-                                <label>Please enter your address
-                                    <input type="text" id="sellerAddress" placeholder="Street">
-                                </label>
-                                <label>City
-                                    <input type="text" id="sellerCity" placeholder="City">
-                                </label>
-                            </div>
-                            <div class="small-12 columns">
-
-                                <label>State
-                                    <input type="text" id="sellerState" placeholder="State">
-                                </label>
-                                <label>Zip
-                                    <input type="text" id="sellerZip" placeholder="Zip">
-                                </label>
-
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <button type="submit" id="Submit" class="button">Search Middle Point!</button>
-        </div>
+    </div>
     </div>
 
+    <!--This is the footer-->
 
-    <!--Footer-->
     <div class="footer">
-        <p>Made by Middle Ground 2019</p>
+        <footer>
+            <div class="footernote">
+                <img src="assets/images/logo.PNG" style="height: 32px; padding-bottom: 10px;">
+            </div>
+        </footer>
     </div>
 
-
+    <!--Script below this message-->
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
@@ -136,6 +128,7 @@
         $(document).foundation();
     </script>
     <script src="assets/javascript/app.js"></script>
+
 </body>
 
 </html>
