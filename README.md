@@ -1,6 +1,6 @@
 # project-1
 <p>Welcome to 
- <a href="https://ogilvie1231.github.io/project-1/">Middle Ground.</a>Middle Ground makes finding a safe and convenient meeting place a simple and easy process. By taking two addresses and giving you a list of convenience stores at a spot between both locations.</p>
+ <a href="https://ogilvie1231.github.io/project-1/">Middle Ground</a>Middle Ground makes finding a safe and convenient meeting place a simple and easy process. By taking two addresses and giving you a list of convenience stores at a spot between both locations.</p>
 
 ![cover photo](assets/images/cover.PNG)
 <h3>This project was built with:</h3>
